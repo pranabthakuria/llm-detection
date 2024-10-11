@@ -48,7 +48,8 @@ class Miner(BaseMinerNeuron):
 
     def __init__(self, config=None):
         super(Miner, self).__init__(config=config)
-
+        bt.logging.info("model_type:"+ self.config.neuron.model_type)
+        
         if self.config.neuron.model_type == 'ppl':
             self.model = PPLModel(device=self.device)
             self.model.load_pretrained(self.config.neuron.ppl_model_path)
@@ -56,8 +57,8 @@ class Miner(BaseMinerNeuron):
             self.model = DebertaClassifier(foundation_model_path=self.config.neuron.deberta_foundation_model_path,
                                            model_path=self.config.neuron.deberta_model_path,
                                            device=self.device)
-        bt.logging.info("model id: ", self.model.model_id)
         self.load_state()
+        bt.logging.info("Miner initialized...")
 
     async def forward(
         self, synapse: detection.protocol.TextSynapse
