@@ -56,7 +56,7 @@ class Miner(BaseMinerNeuron):
             self.model = DebertaClassifier(foundation_model_path=self.config.neuron.deberta_foundation_model_path,
                                            model_path=self.config.neuron.deberta_model_path,
                                            device=self.device)
-
+        bt.logging.info("model id: ", self.model.model_id)
         self.load_state()
 
     async def forward(
