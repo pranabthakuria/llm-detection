@@ -1,8 +1,7 @@
 import numpy as np
 import torch
-from transformers import AutoModelForSequenceClassification, AutoTokenizer, DataCollatorWithPadding
+from transformers import AutoTokenizer, DataCollatorWithPadding, AutoModelForCausalLM
 from torch.utils.data import Dataset
-from tqdm import tqdm
 
 
 class SimpleTestDataset(Dataset):
@@ -50,15 +49,19 @@ def GeneratePredictions(model, tokenizer, test_dataset, device):
 
 class DebertaClassifier:
     def __init__(self, foundation_model_path, model_path, device):
+
         self.tokenizer = AutoTokenizer.from_pretrained(foundation_model_path)
         self.max_length = 1024
         self.device = device
 
+        '''
         model = AutoModelForSequenceClassification.from_pretrained(
             foundation_model_path,
             state_dict=torch.load(model_path),
             attention_probs_dropout_prob=0,
             hidden_dropout_prob=0).to(device)
+        '''
+        model = AutoModelForCausalLM.from_pretrained(model_path)
 
         self.model = model.eval()
 
