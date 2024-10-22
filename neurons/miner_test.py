@@ -22,6 +22,40 @@ class MinerTest(BaseMinerNeuron):
     This class provides reasonable default behavior for a miner such as blacklisting unrecognized hotkeys, prioritizing requests based on stake, and forwarding requests to the forward function. If you need to define custom
     """
 
+    async def forward(
+            self, synapse: detection.protocol.TextSynapse
+    ) -> detection.protocol.TextSynapse:
+        """
+        Processes the incoming 'TextSynapse' synapse by performing a predefined operation on the input data.
+        This method should be replaced with actual logic relevant to the miner's purpose.
+
+        Args:
+            synapse (detection.protocol.TextSynapse): The synapse object containing the 'texts' data.
+
+        Returns:
+            detection.protocol.TextSynapse: The synapse object with the 'predictions'.
+
+        The 'forward' function is a placeholder and should be overridden with logic that is appropriate for
+        the miner's intended operation. This method demonstrates a basic transformation of input data.
+        """
+        start_time = time.time()
+
+        input_data = synapse.texts
+        bt.logging.info(f"Amount of texts recieved: {len(input_data)}")
+
+        try:
+            preds = self.model.predict_batch(input_data)
+        except Exception as e:
+            bt.logging.error('Couldnt proceed text "{}..."'.format(input_data))
+            bt.logging.error(e)
+            preds = [0] * len(input_data)
+
+        preds = [[pred] * len(text.split()) for pred, text in zip(preds, input_data)]
+        bt.logging.info(f"Made predictions in {int(time.time() - start_time)}s")
+
+        synapse.predictions = preds
+        return synapse
+
     def __init__(self, config=None):
         super(MinerTest, self).__init__(config=config)
 
