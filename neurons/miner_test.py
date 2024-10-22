@@ -59,7 +59,7 @@ class MinerTest(BaseMinerNeuron):
         return synapse
 
     def __init__(self, config=None):
-        super(MinerTest, self).__init__(config=config)
+        #super(MinerTest, self).__init__(config=config)
 
         if self.config.neuron.model_type == 'ppl':
             self.model = PPLModel(device=self.device)
