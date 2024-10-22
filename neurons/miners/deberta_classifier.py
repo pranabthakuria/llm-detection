@@ -50,7 +50,7 @@ def GeneratePredictions(model, tokenizer, test_dataset, device):
 class DebertaClassifier:
     def __init__(self, foundation_model_path, model_path, device):
 
-        self.tokenizer = AutoTokenizer.from_pretrained(foundation_model_path)
+        self.tokenizer = AutoTokenizer.from_pretrained(foundation_model_path, use_fast=False)
         self.max_length = 1024
         self.device = device
 
