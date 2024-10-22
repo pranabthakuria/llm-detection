@@ -81,6 +81,7 @@ class MinerTest(BaseMinerNeuron):
                      "the writing sound worse. Other students have expedited that process by turning to a batch of " \
                      "so-called AI humanizer services that can automatically rewrite submissions to get past AI detectors."
 
+
         print(f"Amount of texts recieved: {len(input_data)}")
 
         try:

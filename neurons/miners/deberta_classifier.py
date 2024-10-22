@@ -53,7 +53,7 @@ class DebertaClassifier:
         self.tokenizer = AutoTokenizer.from_pretrained(foundation_model_path)
         self.tokenizer.add_special_tokens({'pad_token': '[PAD]'})
         self.max_length = 1024
-        self.device = device
+        self.device = "cuda:0"
 
         '''
         model = AutoModelForSequenceClassification.from_pretrained(
