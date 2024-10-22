@@ -168,7 +168,7 @@ class BaseMinerNeuron(BaseNeuron):
             traceback: A traceback object encoding the stack trace.
                        None if the context was exited without an exception.
         """
-        self.stop_run_thread()
+        #self.stop_run_thread()
 
     def resync_metagraph(self):
         """Resyncs the metagraph and updates the hotkeys and moving averages based on the new metagraph."""
