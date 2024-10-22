@@ -15,10 +15,11 @@ class SimpleTestDataset(Dataset):
 
     def __getitem__(self, idx):
         string = self.Strings[idx].strip()
-        token_ids = self.Tokenizer(string, max_length=self.MaxSequenceLength, truncation=True).to("cuda:0").input_ids
+        token_ids = self.Tokenizer(string, max_length=self.MaxSequenceLength, truncation=True).input_ids
+        tokens = {key: value.to("cuda:0") for key, value in token_ids.items()}
 
         return {
-            'input_ids': token_ids,
+            'input_ids': tokens,
         }
 
 
