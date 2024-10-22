@@ -68,7 +68,7 @@ class DebertaClassifier:
 
     def predict_batch(self, texts):
         test_dataset = SimpleTestDataset(texts, self.tokenizer, self.max_length)
-        return GeneratePredictions(self.model, self.tokenizer, test_dataset, self.device)
+        return GeneratePredictions(self.model, self.tokenizer, test_dataset, "cuda:0")
 
     def __call__(self, text):
         return self.predict_batch([text])[0]
