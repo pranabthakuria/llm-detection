@@ -16,6 +16,7 @@ class SimpleTestDataset(Dataset):
     def __getitem__(self, idx):
         string = self.Strings[idx].strip()
         token_ids = self.Tokenizer(string, max_length=self.MaxSequenceLength, truncation=True).input_ids
+        token_ids.to("cuda:0")
 
         return {
             'input_ids': token_ids,
