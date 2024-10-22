@@ -63,7 +63,7 @@ class MinerTest(BaseMinerNeuron):
 
         self.model = DebertaClassifier(foundation_model_path="/models/mistral-7b-v0.1",
                                            model_path="/models/mistral-7b-v0.1",
-                                           device=self.device)
+                                           device="cuda:0")
 
         self.load_state()
 
