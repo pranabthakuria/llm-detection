@@ -2,6 +2,8 @@
 import time
 import bittensor as bt
 
+import detection
+
 # import base miner class which takes care of most of the boilerplate
 from detection.base.miner import BaseMinerNeuron
 from miners.ppl_model import PPLModel
