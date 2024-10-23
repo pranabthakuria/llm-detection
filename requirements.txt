@@ -4,7 +4,7 @@ langchain_community==0.0.27
 loguru==0.7.0
 numpy==1.26
 pandas==2.2.1
-pydantic==1.10.14
+pydantic
 pylatexenc==2.10
 Requests==2.31.0
 rich==13.7.1
