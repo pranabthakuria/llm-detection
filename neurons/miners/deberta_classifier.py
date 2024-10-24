@@ -62,7 +62,7 @@ class DebertaClassifier:
             attention_probs_dropout_prob=0,
             hidden_dropout_prob=0).to(device)
         '''
-        model = AutoModelForCausalLM.from_pretrained(model_path)
+        model = AutoModelForCausalLM.from_pretrained(model_path,torch_dtype=torch.float16).to("cuda:0")
 
         self.model = model.eval()
 
